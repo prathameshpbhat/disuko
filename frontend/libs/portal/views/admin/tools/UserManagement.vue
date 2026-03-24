@@ -337,16 +337,16 @@ const executeEntityDeletion = async () => {
 </script>
 
 <template>
-  <v-card class="pa-4 mb-3" style="height: auto; border: none !important">
+  <v-card class="pa-4 mb-3" flat color="transparent" style="height: auto; border: none !important">
     <v-row>
       <v-col cols="12">
         <h1 class="text-h5 pr-2 mb-3">{{ t('USER_MANAGEMENT_DRY_RUN_TITLE') }}</h1>
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-row align="start">
       <v-col cols="12" md="6" lg="4">
-        <p class="text-body-1 mb-4">
+        <p class="mb-4" style="font-size: 12px;">
           {{ t('USER_MANAGEMENT_DRY_RUN_DESCRIPTION') }}
         </p>
 
@@ -358,25 +358,26 @@ const executeEntityDeletion = async () => {
           required
           @user-changed="onUserChanged" />
 
-        <DCActionButton
-          v-if="!dryRunExecuted"
-          :loading="loading"
-          :disabled="loading"
-          class="mt-4"
-          :text="t('USER_MANAGEMENT_DRY_RUN_BUTTON')"
-          @click="executeDryRun" />
+        <div class="d-flex align-center mt-6 mb-4">
+          <DCActionButton
+            v-if="!dryRunExecuted"
+            :loading="loading"
+            :disabled="loading"
+            :text="t('USER_MANAGEMENT_DRY_RUN_BUTTON')"
+            @click="executeDryRun" />
 
-        <DCActionButton
-          v-if="dryRunExecuted"
-          variant="outlined"
-          class="mt-4 ml-2"
-          :text="t('BTN_RESET')"
-          @click="resetForm" />
+          <DCActionButton
+            v-if="dryRunExecuted"
+            variant="outlined"
+            class="ml-2"
+            :text="t('BTN_RESET')"
+            @click="resetForm" />
+        </div>
       </v-col>
 
       <!-- User Details Panel -->
       <v-col cols="12" md="6" lg="8" v-if="selectedUserDetails">
-        <v-card class="pa-4" style="border: 1px solid rgb(var(--v-theme-primary)) !important">
+        <v-card class="pa-4" variant="outlined">
           <div class="d-flex align-center mb-3">
             <v-icon class="mr-2" color="primary">mdi-account-circle</v-icon>
             <span class="text-h6">{{ t('USER_MANAGEMENT_USER_DETAILS') }}</span>
